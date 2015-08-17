@@ -15,8 +15,11 @@ class PrivateLabelController extends JController
      *
      * @return void
      */
-    function display($cachable = false, $urlparams = false)
+    function display( $cachable = false, $urlparams = false )
     {
-        // TODO: Handle display function
+        $input = JFactory::getApplication()->input;
+        $input->set( 'view', $input->getCmd( 'view', '' ) );
+
+        parent::display( $cachable );
     }
 }
