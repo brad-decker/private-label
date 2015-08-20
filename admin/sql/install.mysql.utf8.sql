@@ -22,7 +22,7 @@ CREATE TABLE `#__private_label_pages` (
 CREATE TABLE `#__private_label_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label_id` int(11) NOT NULL DEFAULT 0,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 

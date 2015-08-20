@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field
+                name="id"
+                type="hidden"
+                />
+        <field
+                name="label"
+                type="text"
+                label="Private Label Name"
+                description="The name of this private label"
+                size="40"
+                class="inputbox"
+                default=""
+                />
+        <field name="subdomain" type="list" label="Use Subdomain?"
+               description="Would you like to use a subdomain for this label?"
+               size="1"
+               multiple="false"
+               default="0"
+                >
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </field>
+        <field name="enabled" type="list" label="Enabled"
+               description="Enable or Disable this private label"
+               size="1"
+               multiple="false"
+               default="0"
+                >
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </field>
+    </fieldset>
+</form>
