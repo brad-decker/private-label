@@ -107,9 +107,7 @@ class PrivateLabelModelPrivateLabel extends JModelAdmin
             // Do something.
         }
 
-        $this->setError( print_r( $data, true ) );
-
         $return = parent::save($data);
-        return false;
+        return $return;
     }
 }

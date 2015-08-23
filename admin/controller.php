@@ -18,7 +18,7 @@ class PrivateLabelController extends JController
     function display( $cachable = false, $urlparams = false )
     {
         $input = JFactory::getApplication()->input;
-        $input->set( 'view', $input->getCmd( 'view', '' ) );
+        $input->set( 'view', $input->getCmd( 'view', 'PrivateLabels' ) );
 
         parent::display( $cachable );
     }

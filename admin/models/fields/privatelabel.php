@@ -22,15 +22,15 @@ class JFormFieldPrivateLabel extends JFormField {
 
         $db->setQuery( $query );
         $results = $db->loadObjectList();
-        return $results;
+        $options = array();
+        foreach ( $results as $result ) {
+            $options[$result->id] = $result->label;
+        }
+        return $options;
     }
 
     public function getInput() {
         $options = $this->getOptions();
-        $optionsHtml = "<option value=''>Choose One</option>";
-        foreach( $options as $option ) {
-            $optionsHtml .= "<option value='{$option->id}'>{$option->label}</option>";
-        }
-        return "<select data-type='subdomain' id='{$this->id}' name='{$this->name}'>{$optionsHtml}</select>";
+        return JHtml::_('select.genericlist', $options, $this->name, null, 'value', 'text', $this->value, $this->id);
     }
 }

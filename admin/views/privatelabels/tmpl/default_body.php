@@ -14,10 +14,10 @@ defined('_JEXEC') or die('Restricted Access');
             <?php echo $item->label; ?>
         </td>
         <td>
-            <?php echo $item->subdomain; ?>
+            <?php echo $item->subdomain ? 'Yes' : 'NO'; ?>
         </td>
         <td>
-            <?php echo $item->subdomain_url; ?>
+            <?php echo $item->domain; ?>
         </td>
         <td>
             <?php echo $item->enabled ? 'Yes' : 'NO'; ?>
