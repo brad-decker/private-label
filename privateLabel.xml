@@ -41,7 +41,7 @@
         <submenu>
             <menu view="PrivateLabels">Private Labels</menu>
             <menu view="users">Users</menu>
-            <menu view="landingpages">Landing Pages</menu>
+            <menu view="LandingPages">Landing Pages</menu>
         </submenu>
         <!-- Administration Main File Copy Section -->
         <!-- Note the folder attribute: This attribute describes the folder

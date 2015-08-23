@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field
+                name="id"
+                type="hidden"
+                />
+        <field name="label_id" type="PrivateLabel" label="Private Label"
+               description="Choose a Private Label to associate this landing page with"
+                />
+        <field name="role_id" type="usergroup"
+               label="User Group"
+               description="Pick a user group that users will be assigned to when converting on this landing page"
+               multiple="false" />
+        <field name="landing_pages" type="ZooLandingPages" label="Landing Page"
+               description="Pick the landing page this is assigned to"
+                />
+    </fieldset>
+</form>

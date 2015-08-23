@@ -8,10 +8,10 @@ jimport('joomla.application.component.view');
 /**
  * HelloWorlds View
  */
-class PrivateLabelViewPrivateLabels extends JView
+class PrivateLabelViewLandingPages extends JView
 {
     /**
-     * PrivateLabels view display method
+     * LandingPages view display method
      * @return void
      */
     function display($tpl = null)
@@ -41,9 +41,9 @@ class PrivateLabelViewPrivateLabels extends JView
      */
     protected function addToolBar()
     {
-        JToolBarHelper::title(JText::_('Private Label Manager'));
-        JToolBarHelper::deleteList('', 'privatelabel.delete');
-        JToolBarHelper::editList('privatelabel.edit');
-        JToolBarHelper::addNew('privatelabel.add');
+        JToolBarHelper::title(JText::_('Landing Page Manager'));
+        JToolBarHelper::deleteList('', 'landingpage.delete');
+        JToolBarHelper::editList('landingpage.edit');
+        JToolBarHelper::addNew('landingpage.add');
     }
 }
