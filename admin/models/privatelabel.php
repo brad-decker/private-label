@@ -57,11 +57,59 @@ class PrivateLabelModelPrivateLabel extends JModelAdmin
      */
     protected function loadFormData()
     {
+        error_log('test');
         // Check the session for previously entered form data.
         $data = JFactory::getApplication()->getUserState('com_privatelabel.edit.privatelabel.data', array());
         if (empty($data)) {
             $data = $this->getItem();
         }
         return $data;
+    }
+
+    public function addVirtualDomain( $domain, $menuid ) {
+        $db = JFactory::getDBO();
+
+        $domain = $db->quoteName( $domain );
+
+        $query = $db->getQuery( true );
+
+        $query->insert( $db->quoteName( '#__virtualdomain' ) )
+            ->columns(
+                $db->quoteName(
+                    'published', 'menuid', 'domain'
+                )
+            )
+            ->values("1,${$menuid},{$domain}");
+
+        $db->setQuery( $query );
+
+        if ( !$db->query() ) {
+            error_log( $db->getErrorMsg() );
+            return null;
+        }
+
+        return $db->insertid();
+
+    }
+
+    public function save($data)
+    {
+        $table = $this->getTable();
+        $key = $table->getKeyName();
+        $pk = (!empty($data[$key])) ? $data[$key] : (int) $this->getState($this->getName() . '.id');
+        $isNew = true;
+
+        if ( $pk > 0 ) {
+            $isNew = false;
+        }
+
+        if ( $isNew && $data['subdomain'] === 1) {
+            // Do something.
+        }
+
+        $this->setError( print_r( $data, true ) );
+
+        $return = parent::save($data);
+        return false;
     }
 }

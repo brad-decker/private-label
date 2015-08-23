@@ -23,6 +23,9 @@
             <option value="1">Yes</option>
             <option value="0">No</option>
         </field>
+        <field name="virtual_domain_id" type="Subdomain" label="Subdomain to Use"
+               description="Choose a subdomain from virtual domains to use"
+               />
         <field name="enabled" type="list" label="Enabled"
                description="Enable or Disable this private label"
                size="1"

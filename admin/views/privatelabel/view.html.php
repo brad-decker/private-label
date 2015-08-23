@@ -20,6 +20,8 @@ class PrivateLabelViewPrivateLabel extends JView
         $form = $this->get('Form');
         $item = $this->get('Item');
 
+        error_log('test');
+
         // Check for errors.
         if (count($errors = $this->get('Errors')))
         {
