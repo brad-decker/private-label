@@ -40,7 +40,6 @@
         <menu>Private Label</menu>
         <submenu>
             <menu view="PrivateLabels">Private Labels</menu>
-            <menu view="users">Users</menu>
             <menu view="LandingPages">Landing Pages</menu>
         </submenu>
         <!-- Administration Main File Copy Section -->

@@ -92,6 +92,81 @@ class PrivateLabelModelPrivateLabel extends JModelAdmin
 
     }
 
+    public function doesUserExist ( $user_id ) {
+        $db = JFactory::getDBO();
+
+        $query = $db->getQuery( true );
+
+        $query->select( '*' )->from( $db->quoteName( '#__private_label_users' ) )
+            ->where( $db->quoteName( 'user_id' ) . ' = ' . $user_id );
+
+        $db->setQuery( $query );
+
+        $results = $db->loadObjectList();
+
+        return ( count($results) > 0 );
+    }
+
+    public function registerUserDomain( $user_id, $label_id ) {
+        if ( $this->doesUserExist( $user_id ) ) {
+            // handle error
+            return false;
+        }
+
+        $db = JFactory::getDBO();
+
+        $query = $db->getQuery( true );
+
+        $query->insert( $db->quoteName( '#__private_label_users' ) )
+            ->columns(
+                $db->quoteName( 'user_id', 'label_id' )
+            )
+            ->values("{$user_id},{$label_id}");
+
+        $db->setQuery( $query );
+
+        if ( !$db->query() ) {
+            error_log( $db->getErrorMsg() );
+            return false;
+        }
+
+        return $db->insertid();
+    }
+
+    public function getUserDomain( $user_id ) {
+
+        if ( $this->doesUserExist( $user_id ) ) {
+            // handle error
+            return 'www.rsmfederal.com';
+        }
+
+        $db = JFactory::getDBO();
+
+        $query = $db->getQuery( true );
+
+        $query->select( '*' )
+            ->from( $db->quoteName( '#_private_label_users', 'plu' ) )
+            ->leftJoin( $db->quoteName( '#__private_label', 'pl' ) . ' ON (' . $db->quoteName( 'plu.label_id' ) . ' = ' . $db->quoteName( 'pl.id' ) . ')' )
+            ->leftJoin( $db->quoteName( '#__virtualdomain', 'vd' ) . ' ON (' . $db->quoteName( 'pl.virtual_domain_id' ) . ' = ' . $db->quoteName( 'vd.id' ) . ')' )
+            ->where( $db->quoteName( 'plu.user_id' ) . ' = ' . $user_id );
+
+
+        $db->setQuery( $query );
+
+        if ( !$db->query() ) {
+            error_log( $db->getErrorMsg() );
+            return null;
+        }
+
+        $results = $db->loadObjectList();
+
+        if ( count($results) > 0 ) {
+            return $results[0]->domain;
+        }
+
+        return 'www.rsmfederal.com';
+    }
+
     public function save($data)
     {
         $table = $this->getTable();
