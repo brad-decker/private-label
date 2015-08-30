@@ -16,13 +16,17 @@ class JFormFieldSubdomain extends JFormField {
         $query = $db->getQuery( true );
 
         $query->select( '*' )
-            ->from( $db->quoteName( '#__virtualdomain') );
+            ->from( $db->quoteName( '#__virtualdomain', 'vd' ) )
+            ->leftJoin( $db->quoteName( '#__private_label', 'pl' ) . ' ON (' . $db->quoteName( 'vd.id' ) . ' = ' . $db->quoteName( 'pl.virtual_domain_id' ) . ')' )
+            ->where( $db->quoteName( 'pl.virtual_domain_id' ) . ' IS NULL') ;
 
         JFactory::getApplication()->setError('test');
 
         $db->setQuery( $query );
+
         $results = $db->loadObjectList();
         $options = array('' => 'Choose One');
+
         foreach ( $results as $result ) {
             $options[$result->id] = $result->domain;
         }
